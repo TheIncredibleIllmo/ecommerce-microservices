@@ -22,8 +22,7 @@ namespace Catalog.API.Data.Implementations
             var database = mongoClient.GetDatabase(_configuration.GetValue<string>("DatabaseSettings:DatabaseName"));
             Products = database.GetCollection<Product>(_configuration.GetValue<string>("DatabaseSettings:CollectionName"));
 
-            CatalogContextSeed.TryToSeedData(Products);
+            CatalogContextSeed.TryToSeedData(Products); 
         }
-
     }
 }
