@@ -18,7 +18,6 @@ namespace Discount.API.Repositories
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _dbConnectionString = _configuration.GetValue<string>("DatabaseSettings:ConnectionString");
-
         }
 
         public async Task<Coupon> GetDiscountAsync(string productName)
@@ -48,7 +47,7 @@ namespace Discount.API.Repositories
             using var connection = new NpgsqlConnection(_dbConnectionString);
 
             var affected = await connection.ExecuteAsync
-                ("INSERT INTO Coupon (ProductName,Description,Amount) VALUES (@ProductName, @Description, @Amount)",
+                ("INSERT INTO Coupons (ProductName,Description,Amount) VALUES (@ProductName, @Description, @Amount)",
                 new { ProductName = coupon.ProductName, Description = coupon.Description, Amount = coupon.Amount });
 
             return affected > 0;
@@ -58,7 +57,7 @@ namespace Discount.API.Repositories
             using var connection = new NpgsqlConnection(_dbConnectionString);
 
             var affected = await connection.ExecuteAsync
-                ("UPDATE Coupon SET ProductName=@ProductName, Description=@Description, Amount=@Amount WHERE Id = @Id",
+                ("UPDATE Coupons SET ProductName=@ProductName, Description=@Description, Amount=@Amount WHERE Id = @Id",
                 new { ProductName = coupon.ProductName, Description = coupon.Description, Amount = coupon.Amount, Id=coupon.Id });
 
             return affected > 0;
@@ -69,7 +68,7 @@ namespace Discount.API.Repositories
             using var connection = new NpgsqlConnection(_dbConnectionString);
 
             var affected = await connection.ExecuteAsync
-                ("DELETE FROM Coupon WHERE ProductName = @ProductName",
+                ("DELETE FROM Coupons WHERE ProductName = @ProductName",
                 new { ProductName = productName });
 
             return affected > 0;
