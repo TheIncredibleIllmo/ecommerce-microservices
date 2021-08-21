@@ -42,7 +42,7 @@ namespace Discount.Grpc.Extensions
                     command.ExecuteNonQuery();
 
                     command.CommandText = @"INSERT INTO Coupons(ProductName,Description, Amount) 
-                                                        VALUES('Iphone X', 'Iphone Discount', 150);";
+                                                        VALUES('IPhone X', 'Iphone Discount', 150);";
                     command.ExecuteNonQuery();
 
                     command.CommandText = @"INSERT INTO Coupons(ProductName,Description, Amount) 
