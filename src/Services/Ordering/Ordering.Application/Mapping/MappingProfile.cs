@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ordering.Application.Features.Orders.Commands.UpdateOrder;
 
 namespace Ordering.Application.Mapping
 {
@@ -16,6 +17,7 @@ namespace Ordering.Application.Mapping
         {
             CreateMap<Order, OrderDto>().ReverseMap();
             CreateMap<Order, CheckoutOrderCommand>().ReverseMap();
+            CreateMap<Order, UpdateOrderCommand>().ReverseMap();
 
         }
     }
